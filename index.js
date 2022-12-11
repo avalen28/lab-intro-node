@@ -19,6 +19,7 @@ class SortedList {
   }
 
   max() {
+    // on min(), I use a shorted method. same results.
     let maxVal = 0;
     if (this.length < 1) {
       throw new Error("EmptySortedList");
@@ -31,11 +32,27 @@ class SortedList {
     return maxVal;
   }
 
-  min() {}
+  min() {
+    if (this.length < 1) {
+      throw new Error("EmptySortedList");
+    }
+    this.items.sort(function (a, b) {
+      return a - b;
+    });
+    return this.items[0];
+  }
+  sum() {
+    return this.items.reduce((previous, current) => {
+      return previous + current;
+    }, 0);
+  }
 
-  sum() {}
-
-  avg() {}
+  avg() {
+    if (this.length < 1) {
+      throw new Error("EmptySortedList");
+    }
+    return this.sum() / this.length;
+  }
 }
 
 module.exports = SortedList;
